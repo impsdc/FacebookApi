@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "facebook/graph-sdk": "^5.7",
         "knpuniversity/oauth2-client-bundle": "^2.0",
         "league/oauth2-facebook": "^2.0",
         "sensio/framework-extra-bundle": "^5.1",

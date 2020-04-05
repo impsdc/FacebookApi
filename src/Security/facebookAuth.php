@@ -113,9 +113,4 @@ class facebookAuth extends SocialAuthenticator
         );
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider)
-    {
-        return $userProvider->loadUserByUsername($this->getClient()->fetchUserFromToken($credentials)->getId());
-    }
-
 }
