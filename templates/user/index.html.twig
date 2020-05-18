@@ -1,20 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Hello UserController!{% endblock
+%} {% block body %}
+    <p><strong>FirstName</strong> :{{ user.FirstName }}</p>
+    <p><strong>LastName</strong> :{{ user.LastName }}</p>
+    <p><strong>Sexe</strong> :{{ user.gender }}</p>
+    <p><strong>Hometown</strong> :{{ user.hometown.name }}</p>
 
-{% block title %}Hello UserController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/psant/Desktop/devlab/fb/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/psant/Desktop/devlab/fb/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{user.link}}">See profile</a>
 {% endblock %}

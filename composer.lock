@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "975475f72db86cb3e63ed43e57ccac3a",
+    "content-hash": "3a1a9cd9550bd513835a1f4a040886a2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1507,16 +1507,16 @@
         },
         {
             "name": "knpuniversity/oauth2-client-bundle",
-            "version": "v2.0.0",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/knpuniversity/oauth2-client-bundle.git",
-                "reference": "ba6b091ab0373ef8483ca18e099eeb4c07ca5f8f"
+                "reference": "4c36a34cb955cefbf01bad939539956503e79dfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/knpuniversity/oauth2-client-bundle/zipball/ba6b091ab0373ef8483ca18e099eeb4c07ca5f8f",
-                "reference": "ba6b091ab0373ef8483ca18e099eeb4c07ca5f8f",
+                "url": "https://api.github.com/repos/knpuniversity/oauth2-client-bundle/zipball/4c36a34cb955cefbf01bad939539956503e79dfd",
+                "reference": "4c36a34cb955cefbf01bad939539956503e79dfd",
                 "shasum": ""
             },
             "require": {
@@ -1560,7 +1560,7 @@
                 "oauth",
                 "oauth2"
             ],
-            "time": "2020-03-27T13:29:40+00:00"
+            "time": "2020-04-17T15:18:06+00:00"
         },
         {
             "name": "league/oauth2-client",

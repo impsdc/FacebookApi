@@ -13,6 +13,8 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 
 class facebookAuth extends SocialAuthenticator
 {
@@ -24,7 +26,7 @@ class facebookAuth extends SocialAuthenticator
     {
         $this->clientRegistry = $clientRegistry;
         $this->em = $em;
-	    $this->router = $router;
+        $this->router = $router;
     }
 
     public function supports(Request $request)
@@ -52,6 +54,7 @@ class facebookAuth extends SocialAuthenticator
             ->fetchUserFromToken($credentials);
 
         $email = $facebookUser->getEmail();
+        $id = $facebookUser->getId();
 
         // 1) have they logged in with Facebook before? Easy!
         $existingUser = $this->em->getRepository(User::class)
@@ -62,11 +65,16 @@ class facebookAuth extends SocialAuthenticator
 
         // 2) do we have a matching user by email?
         $user = $this->em->getRepository(User::class)
-                    ->findOneBy(['email' => $email]);
+            ->findOneBy(['email' => $email]);
 
         // 3) Maybe you just want to "register" them by creating
         // a User object
-        $user->setFacebookId($facebookUser->getId());
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
+
+        $user = new User;
+        $user->setFacebookId($id);
+        $user->setEmail($email);
+        $user->setPassword(password_hash(substr(str_shuffle($chars), 0, 10), PASSWORD_DEFAULT));
         $this->em->persist($user);
         $this->em->flush();
 
@@ -81,18 +89,19 @@ class facebookAuth extends SocialAuthenticator
         return $this->clientRegistry
             // "facebook_main" is the key used in config/packages/knpu_oauth2_client.yaml
             ->getClient('facebook_main');
-	}
+    }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         // change "app_homepage" to some route in your app
-        $targetUrl = $this->router->generate('connect_facebook_check');
+        // $targetUrl = $this->router->generate('connect_facebook_check');
 
-        return new RedirectResponse($targetUrl);
-    
+        // return new RedirectResponse($targetUrl);
+
         // or, on success, let the request continue to be handled by the controller
         //return null;
     }
+
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
@@ -112,5 +121,4 @@ class facebookAuth extends SocialAuthenticator
             Response::HTTP_TEMPORARY_REDIRECT
         );
     }
-
 }
