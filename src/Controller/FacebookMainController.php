@@ -22,7 +22,7 @@ class FacebookMainController extends AbstractController
         return $clientRegistry
             ->getClient('facebook_main') // key used in config/packages/knpu_oauth2_client.yaml
             ->redirect([
-                'public_profile', 'email' // the scopes you want to access
+                'public_profile', 'email'
             ]);
     }
 
@@ -44,15 +44,10 @@ class FacebookMainController extends AbstractController
                $user = $client->fetchUser();
    
                // do something with all this new power!
-               $name = $user->getFirstName();
-               
-               $prenom = $user->getLastName();
-            //    $response = $this->forward('App\Controller\UserController::index', [
-            //         'name'  => $name,
-            //         'prenom' => $prenom,
-            //     ]);
-                // dump($user);
+    
+                dump($user);
                 // die;
+
 
                 return $this->render('user/index.html.twig', [
                     'user' => $user,

@@ -69,7 +69,8 @@ class facebookAuth extends SocialAuthenticator
 
         // 3) Maybe you just want to "register" them by creating
         // a User object
-        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
+        if(!$user){
+            $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
 
         $user = new User;
         $user->setFacebookId($id);
@@ -77,6 +78,7 @@ class facebookAuth extends SocialAuthenticator
         $user->setPassword(password_hash(substr(str_shuffle($chars), 0, 10), PASSWORD_DEFAULT));
         $this->em->persist($user);
         $this->em->flush();
+        }
 
         return $user;
     }
