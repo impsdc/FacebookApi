@@ -73,7 +73,7 @@ class facebookAuth extends SocialAuthenticator
             $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*_";
 
         $user = new User;
-        $user->setFacebookId($id);
+        $user->setFacebookId($facebookUser->getId());
         $user->setEmail($email);
         $user->setPassword(password_hash(substr(str_shuffle($chars), 0, 10), PASSWORD_DEFAULT));
         $this->em->persist($user);

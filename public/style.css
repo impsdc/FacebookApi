@@ -1,0 +1,8 @@
+.flex{
+    display: flex;
+    justify-content: center;
+    padding-top: 20%;
+}
+.flex div{
+    padding: 20px;
+}

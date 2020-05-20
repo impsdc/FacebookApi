@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %} {% block title %}Hello UserController!{% endblock
 %} {% block body %}
-    <p><strong>FirstName</strong> :{{ user.FirstName }}</p>
-    <p><strong>LastName</strong> :{{ user.LastName }}</p>
-    <p><strong>Lieux</strong> :{{ user.hometown.name }}</p>
-
-    <a href="{{user.link}}">See profile</a><br>
-    <a href="{{user.PictureUrl}}">dl Photo de profil</a>
-
-
-{# 
-    <a href="{{path('test')}}">Go to next page</a> #}
+    <div class="flex">
+      <div>
+            <img src="{{user.PictureUrl}}" alt="userPicture">
+      </div>
+      <div>
+        <p><strong>FirstName</strong> :{{ user.FirstName }}</p><br>
+        <p><strong>LastName</strong> :{{ user.LastName }}</p><br>
+        <p><strong>Lieux</strong> :{{ user.hometown.name }}</p><br>
+      </div>
+    </div>
+ 
 {% endblock %}
